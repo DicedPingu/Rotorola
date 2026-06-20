@@ -2,13 +2,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/item.dart';
 import '../core/constants/items_data.dart';
 
-// State provider for the active search query
-final searchRepositoryProvider = StateProvider<String>((ref) => '');
+class SearchRepository extends Notifier<String> {
+  @override
+  String build() => '';
+  void setQuery(String query) => state = query;
+}
 
-// State provider for the selected filter category (null means 'All')
-final selectedCategoryProvider = StateProvider<ItemCategory?>((ref) => null);
+final searchRepositoryProvider = NotifierProvider<SearchRepository, String>(SearchRepository.new);
 
-// Provider that returns the filtered items based on search and category
+class SelectedCategory extends Notifier<ItemCategory?> {
+  @override
+  ItemCategory? build() => null;
+  void setCategory(ItemCategory? category) => state = category;
+}
+
+final selectedCategoryProvider = NotifierProvider<SelectedCategory, ItemCategory?>(SelectedCategory.new);
+
 final filteredItemsProvider = Provider<List<Item>>((ref) {
   final query = ref.watch(searchRepositoryProvider).toLowerCase();
   final category = ref.watch(selectedCategoryProvider);

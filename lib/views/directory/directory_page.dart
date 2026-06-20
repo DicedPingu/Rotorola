@@ -84,7 +84,7 @@ class _DirectoryPageState extends ConsumerState<DirectoryPage> {
               child: TextField(
                 controller: _searchController,
                 onChanged: (value) {
-                  ref.read(searchRepositoryProvider.notifier).state = value;
+                  ref.read(searchRepositoryProvider.notifier).setQuery(value);
                 },
                 decoration: InputDecoration(
                   hintText: 'Search items, guides, tools...',
@@ -94,7 +94,7 @@ class _DirectoryPageState extends ConsumerState<DirectoryPage> {
                           icon: const Icon(Icons.clear, color: AppTheme.textSecondary),
                           onPressed: () {
                             _searchController.clear();
-                            ref.read(searchRepositoryProvider.notifier).state = '';
+                            ref.read(searchRepositoryProvider.notifier).setQuery('');
                           },
                         )
                       : null,
@@ -140,7 +140,7 @@ class _DirectoryPageState extends ConsumerState<DirectoryPage> {
                       ),
                       onSelected: (selected) {
                         if (selected) {
-                          ref.read(selectedCategoryProvider.notifier).state = cat['value'];
+                          ref.read(selectedCategoryProvider.notifier).setCategory(cat['value']);
                         }
                       },
                     ),

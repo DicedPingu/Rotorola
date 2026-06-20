@@ -167,8 +167,14 @@ class GuideViewer extends StatelessWidget {
                       fontStyle: FontStyle.italic,
                       fontSize: 14,
                     ),
-                    horizontalRulesPadding: const EdgeInsets.symmetric(vertical: 16),
-                    hr: Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                    horizontalRuleDecoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: Colors.white.withOpacity(0.1),
+                          width: 1,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

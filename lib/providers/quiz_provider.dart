@@ -35,17 +35,19 @@ class QuizState {
   }
 }
 
-class QuizNotifier extends StateNotifier<QuizState> {
-  QuizNotifier()
-      : super(QuizState(
-          currentQuestionIndex: 0,
-          correctAnswersCount: 0,
-          isCompleted: false,
-          questions: quizQuestionsList,
-        ));
+class QuizNotifier extends Notifier<QuizState> {
+  @override
+  QuizState build() {
+    return QuizState(
+      currentQuestionIndex: 0,
+      correctAnswersCount: 0,
+      isCompleted: false,
+      questions: quizQuestionsList,
+    );
+  }
 
   void selectAnswer(int index) {
-    if (state.selectedAnswerIndex != null) return; // Prevent changing answer
+    if (state.selectedAnswerIndex != null) return;
 
     final currentQuestion = state.questions[state.currentQuestionIndex];
     final isCorrect = currentQuestion.correctIndex == index;
@@ -57,6 +59,7 @@ class QuizNotifier extends StateNotifier<QuizState> {
           : state.correctAnswersCount,
     );
   }
+
   void nextQuestion() {
     if (state.currentQuestionIndex + 1 < state.questions.length) {
       state = state.copyWith(
@@ -80,6 +83,4 @@ class QuizNotifier extends StateNotifier<QuizState> {
   }
 }
 
-final quizProvider = StateNotifierProvider<QuizNotifier, QuizState>((ref) {
-  return QuizNotifier();
-});
+final quizProvider = NotifierProvider<QuizNotifier, QuizState>(QuizNotifier.new);
