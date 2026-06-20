@@ -6,6 +6,7 @@ import '../../core/constants/items_data.dart';
 import '../../models/item.dart';
 import '../guides/guide_viewer.dart';
 import 'settings_page.dart';
+import '../../providers/search_provider.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -228,40 +229,70 @@ class HomePage extends ConsumerWidget {
                   mainAxisSpacing: 16,
                   childAspectRatio: 1.45,
                   children: [
-                    _buildCounterCard(
-                      context: context,
-                      title: 'Do Immediately',
-                      count: doImmediatelyCount,
-                      color: AppTheme.cyanAccent,
-                      icon: Icons.bolt,
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(selectedCategoryProvider.notifier).setCategory(ItemCategory.doImmediately);
+                        ref.read(navigationIndexProvider.notifier).setIndex(1);
+                      },
+                      child: _buildCounterCard(
+                        context: context,
+                        title: 'Do Immediately',
+                        count: doImmediatelyCount,
+                        color: AppTheme.cyanAccent,
+                        icon: Icons.bolt,
+                      ),
                     ),
-                    _buildCounterCard(
-                      context: context,
-                      title: 'Good to Do',
-                      count: goodToDoCount,
-                      color: Colors.greenAccent,
-                      icon: Icons.thumb_up_alt_outlined,
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(selectedCategoryProvider.notifier).setCategory(ItemCategory.goodToDo);
+                        ref.read(navigationIndexProvider.notifier).setIndex(1);
+                      },
+                      child: _buildCounterCard(
+                        context: context,
+                        title: 'Good to Do',
+                        count: goodToDoCount,
+                        color: Colors.greenAccent,
+                        icon: Icons.thumb_up_alt_outlined,
+                      ),
                     ),
-                    _buildCounterCard(
-                      context: context,
-                      title: 'Avoid / Wrong',
-                      count: avoidOrWrongCount,
-                      color: Colors.orangeAccent,
-                      icon: Icons.gpp_bad_outlined,
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(selectedCategoryProvider.notifier).setCategory(ItemCategory.avoidOrWrong);
+                        ref.read(navigationIndexProvider.notifier).setIndex(1);
+                      },
+                      child: _buildCounterCard(
+                        context: context,
+                        title: 'Avoid / Wrong',
+                        count: avoidOrWrongCount,
+                        color: Colors.orangeAccent,
+                        icon: Icons.gpp_bad_outlined,
+                      ),
                     ),
-                    _buildCounterCard(
-                      context: context,
-                      title: 'Destructive',
-                      count: destructiveCount,
-                      color: Colors.redAccent,
-                      icon: Icons.dangerous_outlined,
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(selectedCategoryProvider.notifier).setCategory(ItemCategory.destructive);
+                        ref.read(navigationIndexProvider.notifier).setIndex(1);
+                      },
+                      child: _buildCounterCard(
+                        context: context,
+                        title: 'Destructive',
+                        count: destructiveCount,
+                        color: Colors.redAccent,
+                        icon: Icons.dangerous_outlined,
+                      ),
                     ),
-                    _buildCounterCard(
-                      context: context,
-                      title: 'Mind-Blowing',
-                      count: mindBlowingCount,
-                      color: Colors.purpleAccent,
-                      icon: Icons.psychology_outlined,
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(selectedCategoryProvider.notifier).setCategory(ItemCategory.mindBlowing);
+                        ref.read(navigationIndexProvider.notifier).setIndex(1);
+                      },
+                      child: _buildCounterCard(
+                        context: context,
+                        title: 'Mind-Blowing',
+                        count: mindBlowingCount,
+                        color: Colors.purpleAccent,
+                        icon: Icons.psychology_outlined,
+                      ),
                     ),
                   ],
                 ),

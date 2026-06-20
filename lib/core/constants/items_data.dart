@@ -8,6 +8,8 @@ const List<Item> itemsList = [
     description: "Backup your device's radio calibration and IMEI parameters.",
     guide: "Open Termux as root (run `su`) and dump your partition blocks to files: `dd if=/dev/block/by-name/nvram of=/sdcard/nvram.img` and `dd if=/dev/block/by-name/nvdata of=/sdcard/nvdata.img`. Keep these in a safe off-device location.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "NVRAM/EFS are memory blocks containing your device's unique IMEI number, MAC addresses, and cellular radio calibration metrics.",
+    whyDoIWantIt: "If you lose or corrupt these partitions during an update, your phone will lose all cellular connectivity (no network/no SIM detected). A backup is critical.",
   ),
   Item(
     id: 2,
@@ -15,6 +17,8 @@ const List<Item> itemsList = [
     description: "Unlock the modern module loading architecture of Magisk.",
     guide: "Open the Magisk App, tap the Settings icon (top right), toggle Zygisk to Enabled, and reboot the device.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "Zygisk is Magisk's ability to run code directly inside the zygote template process from which all Android applications spawn.",
+    whyDoIWantIt: "It is mandatory for modern root-detection bypass modules (like Play Integrity Fix) to run and intercept security scans before apps can see root.",
   ),
   Item(
     id: 3,
@@ -22,6 +26,8 @@ const List<Item> itemsList = [
     description: "Ensure banking apps and Google services continue working.",
     guide: "Download the Play Integrity Fix module zip from GitHub, go to the Modules tab in Magisk, tap 'Install from storage', select the zip, and reboot.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A Magisk module that spoof-signs your boot profile to pass Google's Play Integrity hardware/software certification tests.",
+    whyDoIWantIt: "Allows you to continue using banking apps, Google Pay, and other secure apps that refuse to run on rooted devices.",
   ),
   Item(
     id: 4,
@@ -29,6 +35,8 @@ const List<Item> itemsList = [
     description: "Hide root from selected applications.",
     guide: "Go to Magisk Settings, enable 'Enforce DenyList', tap 'Configure DenyList', and check Google Play Services, Google Play Store, and all your banking apps.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "Magisk's built-in selector that prevents root permissions and Magisk libraries from loading in specified applications.",
+    whyDoIWantIt: "Allows you to hide root access from system apps and secure services (like Google Play Services) so they behave normally.",
   ),
   Item(
     id: 5,
@@ -36,6 +44,8 @@ const List<Item> itemsList = [
     description: "Prevent unauthorized computer access over ADB.",
     guide: "Go to Settings > System > Developer options, select 'Revoke USB debugging authorizations', and ensure you only accept the fingerprint of your own personal computer.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A developer configuration that controls which computers are authorized to send debugging command line instructions to your phone.",
+    whyDoIWantIt: "Prevents unauthorized computers from connecting to your device via USB and stealing your data or flashing files without your consent.",
   ),
   Item(
     id: 6,
@@ -43,6 +53,8 @@ const List<Item> itemsList = [
     description: "Get access to the primary open-source app repository.",
     guide: "Install the Neo Store APK from GitHub. It is a modernized client for F-Droid that handles background updates and package security checks seamlessly.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "Neo Store is an alternative open-source application client for the F-Droid store containing thousands of open-source utilities.",
+    whyDoIWantIt: "Provides a highly secure, modern UI that handles automated background updates and package security checks without needing Google Play.",
   ),
   Item(
     id: 7,
@@ -50,6 +62,8 @@ const List<Item> itemsList = [
     description: "Automate complete application backups.",
     guide: "Install Swift Backup, grant it root access, and configure it to back up APKs, app data, and device Wi-Fi passwords to local storage or cloud accounts.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "Swift Backup is a backup manager that can copy complete app states, databases, system configurations, and network settings.",
+    whyDoIWantIt: "Standard backups only save the app APK. Swift Backup saves all your internal login tokens, app settings, and progress so you never have to re-login.",
   ),
   Item(
     id: 8,
@@ -57,6 +71,8 @@ const List<Item> itemsList = [
     description: "Turn off background tracking services.",
     guide: "Use Canta or terminal root tools to disable Motorola telemetry: `pm disable-user com.motorola.ccc.ota` and `pm disable-user com.motorola.android.providers.settings`.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "Background services compiled by Motorola that report device metrics, crashes, and usage telemetry back to their servers.",
+    whyDoIWantIt: "Speeds up system memory and improves privacy by stopping Motorola from tracking your device activity and location in the background.",
   ),
   Item(
     id: 9,
@@ -64,6 +80,8 @@ const List<Item> itemsList = [
     description: "Ensure data remains safe in case of physical loss.",
     guide: "Go to Settings > Security > Screen lock. Setting a PIN or password is required to encrypt the device `/userdata` folder securely under file-based encryption.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "The lock screen PIN, Pattern, or Password that Android uses to verify your identity on startup.",
+    whyDoIWantIt: "It initializes the hardware encryption key for the '/userdata' partition. Without a secure lock screen, your personal files are stored in plain text.",
   ),
   Item(
     id: 10,
@@ -71,6 +89,8 @@ const List<Item> itemsList = [
     description: "Stop device usage logging.",
     guide: "Go to Settings > Privacy > Usage & diagnostics, and turn it OFF to prevent Google and Moto from uploading background metrics.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A Google diagnostics service that automatically uploads device performance and crash metrics to Google servers.",
+    whyDoIWantIt: "Increases battery life and privacy by shutting off background data transmission logs that run continuously in the background.",
   ),
   Item(
     id: 11,
@@ -78,6 +98,8 @@ const List<Item> itemsList = [
     description: "Monitor which apps request root access.",
     guide: "Open the Magisk app and check the bottom bar icon for logs. Always verify that no unknown apps have requested or received root permissions.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A log inside the Magisk application that records every time an application requests root access and whether it was approved.",
+    whyDoIWantIt: "Helps you verify that no malware or unauthorized background application has requested or received root-level control.",
   ),
   Item(
     id: 12,
@@ -85,6 +107,8 @@ const List<Item> itemsList = [
     description: "Verify current OEM locking status.",
     guide: "Go to Developer Options. Now that the bootloader is unlocked, this option will be greyed out. Ensure it states 'Bootloader is already unlocked'.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A developer options menu toggle that determines if the device bootloader is permitted to be unlocked via commands.",
+    whyDoIWantIt: "Since the bootloader is already unlocked, this is now a safety indicator confirming that the boot status is permanently modified.",
   ),
   Item(
     id: 13,
@@ -92,6 +116,8 @@ const List<Item> itemsList = [
     description: "Fix host machine USB connection issues.",
     guide: "On your Linux computer, add `SUBSYSTEM==\"usb\", ATTR{idVendor}==\"0e8d\", MODE=\"0666\"` to `/etc/udev/rules.d/51-android.rules` to access device interfaces without sudo.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "Device rule settings on your Linux PC that dictate permissions for USB hardware interfaces.",
+    whyDoIWantIt: "Allows your computer's terminal to communicate with your phone in fastboot/adb mode without needing to run commands as root (sudo).",
   ),
   Item(
     id: 14,
@@ -99,6 +125,8 @@ const List<Item> itemsList = [
     description: "Download Google Play Store apps anonymously.",
     guide: "Install Aurora Store from Neo Store. Open the app and choose 'Anonymous session' to download Play Store apps without signing in with a personal Google account.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "An alternative Google Play Store client that allows you to search and download apps directly from Google's servers without a Google Account.",
+    whyDoIWantIt: "Prevents Google from linking your downloaded apps, device fingerprint, and app history to a personal Google Profile.",
   ),
   Item(
     id: 15,
@@ -106,6 +134,8 @@ const List<Item> itemsList = [
     description: "Prevent updates from breaking custom layouts.",
     guide: "In Google Play or Aurora Store, go to Settings and disable Auto-updates. Manually review updates to check if they block rooted devices.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A configuration toggle in Aurora Store and Google Play that blocks apps from updating automatically.",
+    whyDoIWantIt: "Ensures you can review changes before updating apps. New app versions often add root-detection mechanisms that can lock you out.",
   ),
   Item(
     id: 16,
@@ -113,6 +143,8 @@ const List<Item> itemsList = [
     description: "Check active verification flags.",
     guide: "Verify Android Verified Boot status: in Termux (root), run `getprop ro.boot.verifiedbootstate`. It will return 'orange' or 'green' if using Kaeru spoofing.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "Android Verified Boot (AVB) checks if the operating system files match Google's official cryptographic sign keys.",
+    whyDoIWantIt: "Since root changes these files, spoofing the AVB status is necessary to prevent the phone from refusing to boot on startup.",
   ),
   Item(
     id: 17,
@@ -120,6 +152,8 @@ const List<Item> itemsList = [
     description: "Prevent banking apps from checking the Magisk app.",
     guide: "Go to Magisk Settings and select 'Hide the Magisk app'. Choose a custom name (e.g. 'SettingsManager') to repackage the app under a random package name.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A configuration in Magisk that changes the Magisk Manager app name and package ID to a randomized string (e.g. 'SettingsManager').",
+    whyDoIWantIt: "Some apps scan your installed apps list for the word 'Magisk'. Hiding the app keeps these scanners from finding the root manager.",
   ),
   Item(
     id: 18,
@@ -127,6 +161,8 @@ const List<Item> itemsList = [
     description: "Ensure your adblock lists are up-to-date.",
     guide: "Open AdAway, go to Hosts Sources, and add standard lists like Energized or AdGuard to block modern pop-ups system-wide.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "The server list files that AdAway references to identify ad-serving and tracking networks.",
+    whyDoIWantIt: "Ensures you block newly created ad-hosting domains, malicious redirect pages, and spyware trackers system-wide.",
   ),
   Item(
     id: 19,
@@ -134,6 +170,8 @@ const List<Item> itemsList = [
     description: "Encrypt DNS requests.",
     guide: "Go to Settings > Network & internet > Private DNS, select Private DNS provider host name, and enter a secure DNS like `dns.adguard-dns.com`.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A setting that routes your DNS requests through an encrypted HTTPS tunnel to a private server (Private DNS).",
+    whyDoIWantIt: "Prevents your ISP, public Wi-Fi networks, and local routers from snooping on the websites you visit or intercepting your traffic.",
   ),
   Item(
     id: 20,
@@ -141,6 +179,8 @@ const List<Item> itemsList = [
     description: "Maintain a fallback system boot image.",
     guide: "Keep `/home/dicedpingu/SPQR/rotorola/backups/boot.img` stored in a safe folder on your phone's storage in case you need to quickly re-flash stock boot.",
     category: ItemCategory.doImmediately,
+    whatIsIt: "A backup copy of the unmodified kernel boot partition file that came with your phone's stock software.",
+    whyDoIWantIt: "If a custom module or kernel edit causes a bootloop, flashing this original file via fastboot immediately restores default boot behavior.",
   ),
   Item(
     id: 21,
@@ -148,6 +188,8 @@ const List<Item> itemsList = [
     description: "Adjust core performance behavior.",
     guide: "Use SmartPack Kernel Manager to set the CPU governor to 'schedutil' or 'interactive'. This matches performance with load and maximizes battery longevity.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "CPU Governors dictate how fast your processor chips run relative to active screen workloads.",
+    whyDoIWantIt: "Saves battery life by forcing the budget processor to run slowly during simple reading tasks and ramp up only during heavy loading.",
   ),
   Item(
     id: 22,
@@ -155,6 +197,8 @@ const List<Item> itemsList = [
     description: "Expand multitasking capability.",
     guide: "Create a ZRAM swap in SmartPack Kernel Manager. Setting ZRAM to 2GB or 4GB will compress background memory and prevent system slowdowns.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "ZRAM is a compressed RAM swap partition created in the device's system memory.",
+    whyDoIWantIt: "It acts like virtual memory, compressing inactive apps in RAM so the phone can multitask more apps without slowing down.",
   ),
   Item(
     id: 23,
@@ -162,6 +206,8 @@ const List<Item> itemsList = [
     description: "Remove bloat services.",
     guide: "In Termux as root, run: `pm uninstall --user 0 com.google.android.googlequicksearchbox` to remove search telemetry and Assistant loops.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "Google search telemetry services that run background scans, hotword monitoring (Hey Google), and screen content analysis.",
+    whyDoIWantIt: "Frees up system memory and CPU cycles by removing heavy, non-essential background processes on a budget processor.",
   ),
   Item(
     id: 24,
@@ -169,6 +215,8 @@ const List<Item> itemsList = [
     description: "Extend the physical life of your phone battery.",
     guide: "Use SmartPack Kernel Manager to set charging thresholds (e.g., stop charging at 80%). This reduces battery stress over long-term usage.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "A kernel battery charge controller threshold limit (e.g., stopping charging at 80% instead of 100%).",
+    whyDoIWantIt: "Lithium batteries wear down rapidly when kept at 100% capacity under high heat. Limiting charge levels doubles physical battery lifespan.",
   ),
   Item(
     id: 25,
@@ -176,6 +224,8 @@ const List<Item> itemsList = [
     description: "Optimize speaker thresholds.",
     guide: "Install the JamesDSP Magisk module. Open the app to configure high-fidelity equalizers, virtual rooms, and customized headphone DAC filters.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "Low-level audio driver routing that bypasses standard Android volume limitations.",
+    whyDoIWantIt: "Allows you to customize exact equalizer properties, headphone soundstages, and microphone input levels system-wide.",
   ),
   Item(
     id: 26,
@@ -183,6 +233,8 @@ const List<Item> itemsList = [
     description: "Diagnose app crashes or security failures.",
     guide: "Open Termux and run `su -c logcat` or filter by app: `logcat | grep -i [app_name]`. Useful for understanding why a root-detecting app is failing.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The real-time log output of the Android operating system kernel, services, and apps.",
+    whyDoIWantIt: "Essential for troubleshooting. If an app crashes or fails to open, looking at the logs shows you the exact root check or security error.",
   ),
   Item(
     id: 27,
@@ -190,6 +242,8 @@ const List<Item> itemsList = [
     description: "Manage background RAM utilization.",
     guide: "Adjust LMK thresholds in SmartPack under memory settings. Making it aggressive keeps more RAM free; making it light keeps apps cached longer.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The Low Memory Killer determines at what threshold of free RAM Android should close background apps.",
+    whyDoIWantIt: "Allows you to adjust multitasking. Making it lighter keeps more background apps active; making it aggressive keeps RAM free for games.",
   ),
   Item(
     id: 28,
@@ -197,6 +251,8 @@ const List<Item> itemsList = [
     description: "Control heat generation.",
     guide: "Under Battery settings in SmartPack, check if your kernel supports charging speed limits to prevent the phone from heating up during quick charging.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The rate of electrical current allowed to enter the battery module during charging cycles.",
+    whyDoIWantIt: "Allows you to limit heat generation. Slower charging keeps the phone cool, preventing battery degradation and hardware wear.",
   ),
   Item(
     id: 29,
@@ -204,6 +260,8 @@ const List<Item> itemsList = [
     description: "Create an isolated workspace container.",
     guide: "Install Shelter from Neo Store. Set up a Work Profile container to run untrusted closed-source apps separated from your primary system storage.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "An app isolation manager that leverages Android's 'Work Profile' framework to create a separate storage container.",
+    whyDoIWantIt: "Keeps untrusted closed-source apps (like social media) completely isolated from your private files and contacts.",
   ),
   Item(
     id: 30,
@@ -211,6 +269,8 @@ const List<Item> itemsList = [
     description: "Allow AdAway to modify the host file.",
     guide: "Go to Magisk Settings and select 'Systemless Hosts'. This creates an overlay partition at `/system/etc/hosts` that can be modified without altering `/system`.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "A system configuration overlay that lets ad-blockers redirect web traffic using a virtual hosts file.",
+    whyDoIWantIt: "Allows AdAway to block ads system-wide without modifying your read-only system files directly.",
   ),
   Item(
     id: 31,
@@ -218,6 +278,8 @@ const List<Item> itemsList = [
     description: "Add custom double-tap/long-press gestures.",
     guide: "Use LSPosed and install the Key Mapper module. You can configure custom shell scripts or shortcuts to execute when pressing the Volume keys.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The keyboard and physical button maps stored in the kernel configurations.",
+    whyDoIWantIt: "Allows you to customize physical hardware keys (like volume buttons) to trigger shortcuts, flashlights, or root commands.",
   ),
   Item(
     id: 32,
@@ -225,6 +287,8 @@ const List<Item> itemsList = [
     description: "Fix cached library initialization issues.",
     guide: "In fastbootd or TWRP recovery, erase the Dalvik cache. From root shell, run: `rm -rf /data/dalvik-cache` and reboot to rebuild cache.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The compilation cache of system libraries and app code compiled by the Android Runtime.",
+    whyDoIWantIt: "If a custom mod breaks system layouts or causes boots loops, clearing this cache forces the phone to rebuild configs from scratch.",
   ),
   Item(
     id: 33,
@@ -232,6 +296,8 @@ const List<Item> itemsList = [
     description: "Control what apps can access.",
     guide: "Use permission managers like Permission Ruler (Root) to automatically revoke permissions from background apps when the screen is locked.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The standard permission controller that grants apps access to camera, microphone, storage, and contacts.",
+    whyDoIWantIt: "Allows you to revoke permissions from background apps automatically when you lock your screen, preventing silent background spying.",
   ),
   Item(
     id: 34,
@@ -239,6 +305,8 @@ const List<Item> itemsList = [
     description: "Improve browser resolve speed.",
     guide: "Use Magisk modules like 'DNS Forwarder' to force local caching of requests, improving browsing latency and reducing redundant requests.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "A configuration that stores recently resolved website IP addresses locally on your device.",
+    whyDoIWantIt: "Speeds up web loading times by avoiding redundant DNS lookup queries every time you open a link.",
   ),
   Item(
     id: 35,
@@ -246,6 +314,8 @@ const List<Item> itemsList = [
     description: "Execute shell commands automatically when the phone starts.",
     guide: "Install Termux:Boot. Place your startup shell scripts inside `~/.termux/boot/` to run server setups or root adjustments automatically on boot.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "Automated startup instructions that execute as soon as the Android kernel finishes boot initialization.",
+    whyDoIWantIt: "Allows you to launch background servers, load custom scripts, or set battery thresholds automatically when the phone starts.",
   ),
   Item(
     id: 36,
@@ -253,6 +323,8 @@ const List<Item> itemsList = [
     description: "Make the budget processor feel much faster.",
     guide: "Go to Settings > Developer options, and change Window animation scale, Transition animation scale, and Animator duration scale to 0.5x.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The speeds of window opening, app switching, and transition animations in Developer Options.",
+    whyDoIWantIt: "Speeds up the overall feel of the G24's budget processor by removing artificial animation wait delays.",
   ),
   Item(
     id: 37,
@@ -260,6 +332,8 @@ const List<Item> itemsList = [
     description: "Replace the default Motorola logo on boot.",
     guide: "Replace the `.zip` file located at `/system/media/bootanimation.zip` with a custom zip using a root explorer or a Magisk overlay module.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "The media zip file containing the animation sequence displayed when you reboot your phone.",
+    whyDoIWantIt: "Allows you to customize the boot screen with custom retro, cyber, or minimal graphics instead of the default Motorola logo.",
   ),
   Item(
     id: 38,
@@ -267,6 +341,8 @@ const List<Item> itemsList = [
     description: "Check partition filesystem types.",
     guide: "Run `mount` in Termux. Verify that your system and vendor partitions are mounted as read-only, and userdata is formatted as f2fs.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "A command line status query displaying how partition volumes are mounted (e.g. read-only or read-write).",
+    whyDoIWantIt: "Ensures you understand which partitions are writeable and how their file storage parameters are set.",
   ),
   Item(
     id: 39,
@@ -274,6 +350,8 @@ const List<Item> itemsList = [
     description: "Improve disk read/write priority.",
     guide: "In SmartPack under I/O settings, select 'mq-deadline' or 'bfq' to optimize input/output operations for the G24's eMMC storage type.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "Input/Output (I/O) schedulers control the order in which read/write tasks are sent to your storage chip.",
+    whyDoIWantIt: "Optimizes storage speed. Setting it correctly reduces lag when reading files on the G24's budget eMMC chip.",
   ),
   Item(
     id: 40,
@@ -281,6 +359,8 @@ const List<Item> itemsList = [
     description: "Isolate private keys on-device.",
     guide: "Use open-source tools like OpenKeychain (F-Droid) to store and manage PGP keys. Run cryptographic operations locally and securely.",
     category: ItemCategory.goodToDo,
+    whatIsIt: "Cryptographic software that encrypts individual folders, keys, or files locally on your phone storage.",
+    whyDoIWantIt: "Ensures your private data remains completely unreadable even if the physical phone is stolen and disassembled.",
   ),
   Item(
     id: 41,
@@ -288,6 +368,8 @@ const List<Item> itemsList = [
     description: "Never tap grant on prompts you don't recognize.",
     guide: "Root bypasses the sandbox completely. A malicious app with root can read all your banking data, clone your tokens, or install persistent spyware.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "The prompt requesting root permission for an installed app.",
+    whyDoIWantIt: "Granting root bypasses all sandbox security. A malicious app with root can read all your banking apps, clone keys, and spy on you.",
   ),
   Item(
     id: 42,
@@ -295,6 +377,8 @@ const List<Item> itemsList = [
     description: "Prevent physical port exploitation.",
     guide: "If you connect your phone to public charging docks with USB debugging active, a malicious system can inject payloads or extract data immediately.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Leaving USB Debugging active when the device is not connected to a trusted computer.",
+    whyDoIWantIt: "If you connect your phone to a public charging port, a hidden computer inside the dock can run commands to extract your data.",
   ),
   Item(
     id: 43,
@@ -302,6 +386,8 @@ const List<Item> itemsList = [
     description: "Prevent sudden bootloops.",
     guide: "Disable auto-update for Magisk Modules. An incompatible module version can easily fail mid-boot and trigger a bootloop/soft-brick.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Allowing Magisk modules to update automatically without manual review.",
+    whyDoIWantIt: "A module update that is incompatible with Android 14 can crash your system on reboot, putting your device into a bootloop.",
   ),
   Item(
     id: 44,
@@ -309,6 +395,8 @@ const List<Item> itemsList = [
     description: "Avoid breaking read-only partition structures.",
     guide: "Modern Android uses dynamic partitions. Modifying system files directly will break dm-verity and secure boot. Always use systemless Magisk overlays.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Editing files in the `/system` partition directly rather than using systemless overlays.",
+    whyDoIWantIt: "Triggers Android security system checks on boot, causing the device to refuse to boot due to verification failures.",
   ),
   Item(
     id: 45,
@@ -316,6 +404,8 @@ const List<Item> itemsList = [
     description: "Avoid closed-source tweaks.",
     guide: "Many 'FPS Booster' or 'Gaming Tweaks' modules on YouTube contain malicious background scripts or hardcoded configurations that can brick your system.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Flashing zip files downloaded from unverified forums or YouTube channels.",
+    whyDoIWantIt: "Many popular 'game boost' modules contain background script loggers, keyloggers, or commands that can brick your G24.",
   ),
   Item(
     id: 46,
@@ -323,6 +413,8 @@ const List<Item> itemsList = [
     description: "Do not disable security services.",
     guide: "Avoid disabling services like `com.google.android.gms.security` as it breaks package signature checks and exposes the system to vulnerabilities.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Disabling system security framework packages like Google Play Services security providers.",
+    whyDoIWantIt: "Breaks cryptography libraries and leaves your web traffic vulnerable to intercept attacks.",
   ),
   Item(
     id: 47,
@@ -330,6 +422,8 @@ const List<Item> itemsList = [
     description: "Avoid turning off app security checks.",
     guide: "Do not disable Google Play Protect or local package verification unless strictly required, as it leaves you vulnerable to sideloaded malware.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Disabling signature verification checks for installed apps.",
+    whyDoIWantIt: "Allows modified APKs to install, but also bypasses security checks that stop malware from pretending to be legitimate apps.",
   ),
   Item(
     id: 48,
@@ -337,6 +431,8 @@ const List<Item> itemsList = [
     description: "Keep browser runtimes isolated.",
     guide: "Never execute root prompts or permissions requested inside browser-based webviews, as they can bypass remote execution protections.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Running the superuser terminal command inside standard browser-based webviews or web applications.",
+    whyDoIWantIt: "Exposes your root access to web scripts, allowing malicious sites to execute remote command execution attacks on your system.",
   ),
   Item(
     id: 49,
@@ -344,6 +440,8 @@ const List<Item> itemsList = [
     description: "Isolate your telemetry footprint.",
     guide: "Many root utilities do not require location permissions. Deny location or cellular info unless the utility specifically needs it.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Granting location permissions to CLI command line utilities or root managers.",
+    whyDoIWantIt: "Root tools do not need location. Bypassing sandbox permissions lets them track your cellular coordinates silently.",
   ),
   Item(
     id: 50,
@@ -351,6 +449,8 @@ const List<Item> itemsList = [
     description: "Avoid booting unofficial boot images.",
     guide: "Only use custom kernels compiled from verified GitHub sources for the G24 chipset. Foreign kernels will fail boot validation immediately.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Booting custom kernels compiled by anonymous developers on unofficial forums.",
+    whyDoIWantIt: "Mismatched kernel source files can brick the MediaTek MT6768 board immediately or install kernel-level hardware loggers.",
   ),
   Item(
     id: 51,
@@ -358,6 +458,8 @@ const List<Item> itemsList = [
     description: "Ensure core input is always available.",
     guide: "Never delete the stock launcher or keyboard before installing third-party replacements. If you do, the phone will boot to a black screen.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Uninstalling the default Motorola system launcher or Gboard keyboard using debloater tools.",
+    whyDoIWantIt: "If you remove them without installing replacements first, your phone will boot to a black screen with no way to enter your password.",
   ),
   Item(
     id: 52,
@@ -365,6 +467,8 @@ const List<Item> itemsList = [
     description: "Avoid custom flags without fallback paths.",
     guide: "Disabling verify flags (`--disable-verity`) changes the security descriptor. Ensure you have the original `vbmeta.img` backup ready.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Disabling AVB integrity checks on the bootloader without having a stock vbmeta backup file on hand.",
+    whyDoIWantIt: "If signature checks fail and you have no backup, the bootloader locks down and refuses to load any operating system.",
   ),
   Item(
     id: 53,
@@ -372,6 +476,8 @@ const List<Item> itemsList = [
     description: "Never flash files to the preloader partition.",
     guide: "The preloader is the first software code run by the CPU. If you damage it, the device cannot charge or interface with the PC (hard brick).",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Using desktop MediaTek preloader tools to flash files to your phone's preloader partition.",
+    whyDoIWantIt: "The preloader initializes charging and USB ports. Corrupting it makes it impossible to boot or interface with a PC ever again.",
   ),
   Item(
     id: 54,
@@ -379,6 +485,8 @@ const List<Item> itemsList = [
     description: "Banking apps will flag your device.",
     guide: "Never run a banking app without first adding it to the Magisk DenyList, as they will flag your account or lock your online access.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Opening bank, payment, or secure corporate applications while root access remains visible.",
+    whyDoIWantIt: "These apps scan for root. If found, your accounts can be flagged, and the app will lock you out of your account.",
   ),
   Item(
     id: 55,
@@ -386,6 +494,8 @@ const List<Item> itemsList = [
     description: "Only flash recoveries matched to fogorow.",
     guide: "Flashing a recovery designed for another MediaTek model (e.g. penangf) will overwrite the recovery partition and trigger bootloops.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Flashing recovery boot images compiled for other Motorola models (e.g. Motorola G14).",
+    whyDoIWantIt: "Each recovery partition is compiled to matching board hardware. Flashing the wrong one bricks the recovery mode partition.",
   ),
   Item(
     id: 56,
@@ -393,6 +503,8 @@ const List<Item> itemsList = [
     description: "Avoid breaking synchronization states.",
     guide: "Clearing Play Services storage deletes device registration tokens, which can cause push notifications and location synchronization to break.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Clearing all user data from Google Play Services to bypass root detection.",
+    whyDoIWantIt: "Deletes your device push tokens and account keys. It breaks notification delivery and location services for all apps.",
   ),
   Item(
     id: 57,
@@ -400,6 +512,8 @@ const List<Item> itemsList = [
     description: "Avoid global read/write/execute permissions.",
     guide: "Changing permissions globally breaks Android safety policies and will prevent apps or the system daemon from starting up due to safety checks.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Using global write permissions (`chmod 777`) on root directories or config folders.",
+    whyDoIWantIt: "Android security checks will refuse to launch services if their folders are set to insecure, globally writeable permissions.",
   ),
   Item(
     id: 58,
@@ -407,6 +521,8 @@ const List<Item> itemsList = [
     description: "Secure the Magisk interface.",
     guide: "Set up a PIN, fingerprint, or biometric lock on your Magisk/APatch application to prevent anyone holding your phone from granting root.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Leaving the Magisk or APatch root manager apps without an app lock or password verification.",
+    whyDoIWantIt: "Anyone who holds your unlocked phone for a few seconds can open the app and grant permanent root access to malicious software.",
   ),
   Item(
     id: 59,
@@ -414,6 +530,8 @@ const List<Item> itemsList = [
     description: "Prevent electrical spikes on rooted boards.",
     guide: "Only use reputable chargers. Power spikes can brick custom boards or damage partition controllers during critical flash operations.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Using cheap, uncertified wall plugs or USB cables during critical flashing stages.",
+    whyDoIWantIt: "Voltage spikes during data transfers can corrupt your phone's memory controllers, leading to permanent hardware bricks.",
   ),
   Item(
     id: 60,
@@ -421,6 +539,8 @@ const List<Item> itemsList = [
     description: "Avoid overriding hardware defaults.",
     guide: "Do not disable hardware monitoring services, as they control thermal thresholds and prevent CPU overheat damage.",
     category: ItemCategory.avoidOrWrong,
+    whatIsIt: "Uninstalling or disabling thermal battery throttling controllers.",
+    whyDoIWantIt: "Bypasses automatic battery cooling. Under load, the battery can overheat, leading to swelling, fire hazards, or hardware failure.",
   ),
   Item(
     id: 61,
@@ -428,6 +548,8 @@ const List<Item> itemsList = [
     description: "THE MOST DESTRUCTIVE COMMAND ON CUSTOM SYSTEMS.",
     guide: "If you lock the bootloader while running modified firmware (root, custom bootloader, GSIs), secure boot signature check fails and locks you out forever (Hard Brick).",
     category: ItemCategory.destructive,
+    whatIsIt: "Re-locking your bootloader using fastboot while running custom software (root, modules, GSIs).",
+    whyDoIWantIt: "The bootloader will perform a secure sign check on the modified software, fail, and refuse to boot or unlock again (Permanent Hard Brick).",
   ),
   Item(
     id: 62,
@@ -435,6 +557,8 @@ const List<Item> itemsList = [
     description: "Destroying the first boot stage.",
     guide: "The preloader controls the connection interface. Flashing a mismatched preloader will permanently kill the device's ability to communicate with the USB port.",
     category: ItemCategory.destructive,
+    whatIsIt: "Flashing a preloader binary meant for a different MediaTek processor or device revision.",
+    whyDoIWantIt: "Kills the USB port handshake. The device becomes completely unresponsive and will not charge or connect to your computer.",
   ),
   Item(
     id: 63,
@@ -442,6 +566,8 @@ const List<Item> itemsList = [
     description: "Avoid writing raw data directly to system blocks.",
     guide: "Running `dd if=/dev/zero of=/dev/block/by-name/boot` will erase the boot partition. Double-check your target block names before executing `dd`.",
     category: ItemCategory.destructive,
+    whatIsIt: "Directly writing raw blocks to incorrect partition names using the terminal `dd` command.",
+    whyDoIWantIt: "Writing data to the wrong block (e.g., writing boot info to the preloader) instantly destroys partition index routing.",
   ),
   Item(
     id: 64,
@@ -449,6 +575,8 @@ const List<Item> itemsList = [
     description: "Destroying file system mounting instructions.",
     guide: "Deleting or editing file mount maps will prevent Android from mounting the system, vendor, or userdata partitions on startup, causing a loop.",
     category: ItemCategory.destructive,
+    whatIsIt: "Deleting the filesystem mounting map file (`fstab`) inside the startup RAM disk files.",
+    whyDoIWantIt: "Android won't know where partitions like `/system` or `/data` are located, causing the device to loop in boot ROM mode.",
   ),
   Item(
     id: 65,
@@ -456,6 +584,8 @@ const List<Item> itemsList = [
     description: "Avoid low-level lock configurations.",
     guide: "Do not use MTKClient to re-lock the secure configurations (`seccfg`) unless the system is 100% stock, as it leads to bootloops.",
     category: ItemCategory.destructive,
+    whatIsIt: "Using MTKClient on a PC to force-lock security parameters while running custom system overlays.",
+    whyDoIWantIt: "Causes a bootloader mismatch loop. The phone will detect custom configurations and refuse to start.",
   ),
   Item(
     id: 66,
@@ -463,6 +593,8 @@ const List<Item> itemsList = [
     description: "Prevent physical motherboard burn.",
     guide: "Increasing voltage offsets beyond safe limits will overheat the G24's MediaTek MT6768 board, causing physical chips to burn out.",
     category: ItemCategory.destructive,
+    whatIsIt: "Configuring governor voltage offsets beyond standard factory safety specifications.",
+    whyDoIWantIt: "Overvolting the G24's MediaTek MT6768 board will physically fry the processor circuits, killing the motherboard.",
   ),
   Item(
     id: 67,
@@ -470,6 +602,8 @@ const List<Item> itemsList = [
     description: "Metadata is required for partition routing.",
     guide: "Wiping the metadata partition destroys dynamic partition maps. The device will be unable to find system, vendor, or product partitions.",
     category: ItemCategory.destructive,
+    whatIsIt: "Metadata holds routing maps for Android's dynamic partition layout (system, vendor, product).",
+    whyDoIWantIt: "Wiping this block destroys dynamic routing. The device will be unable to locate system files to start up.",
   ),
   Item(
     id: 68,
@@ -477,6 +611,8 @@ const List<Item> itemsList = [
     description: "Stock bootloader automatically locks the device.",
     guide: "Flashing stock `lk.img` locks the bootloader. If you have root or custom files on other partitions, the device will soft-brick immediately.",
     category: ItemCategory.destructive,
+    whatIsIt: "Flashing the stock bootloader file over a device running custom Kaeru or rooted partition configurations.",
+    whyDoIWantIt: "The stock bootloader blocks unverified boot images, instantly soft-bricking the device until you flash back to stock.",
   ),
   Item(
     id: 69,
@@ -484,6 +620,8 @@ const List<Item> itemsList = [
     description: "Avoid script-based wipes.",
     guide: "A simple line like `rm -rf /` in a script running as root will wipe all partitions, including critical device-specific NVRAM calibration data.",
     category: ItemCategory.destructive,
+    whatIsIt: "Executing command line scripts downloaded from open forums directly as root.",
+    whyDoIWantIt: "A malicious or poorly written script can delete your EFS/NVRAM calibrations or erase all partition sectors in seconds.",
   ),
   Item(
     id: 70,
@@ -491,6 +629,8 @@ const List<Item> itemsList = [
     description: "Permanently destroying IMEI and baseband.",
     guide: "Formatting NVRAM deletes IMEI numbers and network calibration forever. The device will never connect to cellular networks or Wi-Fi again.",
     category: ItemCategory.destructive,
+    whatIsIt: "Erasing or formatting the NVRAM or NVDATA sectors on your phone's internal storage.",
+    whyDoIWantIt: "Destroys cellular network configurations and IMEI records permanently. Your phone will never get a mobile signal again.",
   ),
   Item(
     id: 71,
@@ -498,6 +638,8 @@ const List<Item> itemsList = [
     description: "Avoid bypassing thermal protections.",
     guide: "Bypassing governor thermal limits allows the phone to overheat past 85C, causing permanent damage to the battery and CPU board.",
     category: ItemCategory.destructive,
+    whatIsIt: "Changing hardware throttling configurations inside the kernel control variables.",
+    whyDoIWantIt: "Bypasses device cooling systems. The processor will overheat past 85C, damaging physical memory and battery cells.",
   ),
   Item(
     id: 72,
@@ -505,6 +647,8 @@ const List<Item> itemsList = [
     description: "Ensure you target the active slot.",
     guide: "Flashing a system image to the inactive slot can cause slot-retry conflicts. Always verify your active slot: `fastboot getvar current-slot`.",
     category: ItemCategory.destructive,
+    whatIsIt: "Flashing custom recovery or boot images to the inactive slot in an A/B partition structure.",
+    whyDoIWantIt: "Triggers boot failures and active slot switching loops, making it difficult to recover without a full system wipe.",
   ),
   Item(
     id: 73,
@@ -512,6 +656,8 @@ const List<Item> itemsList = [
     description: "Destroying disk structures.",
     guide: "Erasing the GPT means the phone no longer knows where partitions start or end. Recovery requires manual GPT rebuilding via low-level MTK tools.",
     category: ItemCategory.destructive,
+    whatIsIt: "Eraser commands that wipe the Guid Partition Table (GPT) formatting maps on the device storage.",
+    whyDoIWantIt: "The processor won't know where partition sectors begin or end, requiring low-level factory programming tool recovery.",
   ),
   Item(
     id: 74,
@@ -519,6 +665,8 @@ const List<Item> itemsList = [
     description: "AVB signature verification failure.",
     guide: "Flashing custom boot images without flashing a patched `vbmeta.img` with verification flags disabled will trigger boot failure immediately.",
     category: ItemCategory.destructive,
+    whatIsIt: "Flashing custom boot images without configuring the AVB disable flags in the boot validation files.",
+    whyDoIWantIt: "The secure bootloader will find unsigned code and refuse to boot, displaying a boot verification failure screen.",
   ),
   Item(
     id: 75,
@@ -526,6 +674,8 @@ const List<Item> itemsList = [
     description: "Avoid partition mismatch flashing.",
     guide: "Flashing TWRP/OrangeFox directly to the `boot` partition instead of `recovery` destroys the kernel, making the device unable to start Android.",
     category: ItemCategory.destructive,
+    whatIsIt: "Directly flashing a recovery image (like TWRP) onto the kernel boot partition block.",
+    whyDoIWantIt: "Overwrites your kernel files. The phone won't be able to boot Android and will boot loop back to fastbootd.",
   ),
   Item(
     id: 76,
@@ -533,6 +683,8 @@ const List<Item> itemsList = [
     description: "Bypassing normal execution states.",
     guide: "Do not trigger loops in MediaTek Engineering menu (`*#*#3646633#*#*`) that write continuously to the flash, as it degrades eMMC life rapidly.",
     category: ItemCategory.destructive,
+    whatIsIt: "Running diagnostic hardware tests that loop read/write sweeps to the flash memory sectors.",
+    whyDoIWantIt: "Degrades the physical lifespan of the G24's budget eMMC chip, leading to sector corruption and hardware failure.",
   ),
   Item(
     id: 77,
@@ -540,6 +692,8 @@ const List<Item> itemsList = [
     description: "Avoid manual file deletion.",
     guide: "Deleting binaries in `/system/bin` breaks system functions. Always use Magisk overlays to disable or modify system binaries systemlessly.",
     category: ItemCategory.destructive,
+    whatIsIt: "Manually deleting files inside the `/system/bin` or `/system/lib` directories via a root file manager.",
+    whyDoIWantIt: "Breaks system dependencies. Android will crash on startup. Always use Magisk modules for systemless modifications.",
   ),
   Item(
     id: 78,
@@ -547,6 +701,8 @@ const List<Item> itemsList = [
     description: "Avoid manual battery calibration writes.",
     guide: "Modifying system battery configuration files can cause incorrect voltage regulation, leading to battery swelling or physical hazards.",
     category: ItemCategory.destructive,
+    whatIsIt: "Manually modifying charging voltage thresholds and battery thermal profile configurations.",
+    whyDoIWantIt: "Can cause incorrect voltage regulation, leading to battery swelling, rapid battery degradation, or physical fire hazards.",
   ),
   Item(
     id: 79,
@@ -554,6 +710,8 @@ const List<Item> itemsList = [
     description: "Destroying the cryptographic foundation.",
     guide: "Deleting key/credential storage binaries breaks secure lockscreen and system verification, leading to absolute boot loops.",
     category: ItemCategory.destructive,
+    whatIsIt: "Deleting the cryptographic credential manager binaries in the system folder.",
+    whyDoIWantIt: "Breaks Android's lock screen and biometric validation, preventing you from unlocking the phone and causing a bootloop.",
   ),
   Item(
     id: 80,
@@ -561,6 +719,8 @@ const List<Item> itemsList = [
     description: "Avoid block format of dynamic overlays.",
     guide: "Formatting the userdata block directly instead of performing a factory reset can break virtual sector allocation in modern Android systems.",
     category: ItemCategory.destructive,
+    whatIsIt: "Formatting user data partitions directly as a block instead of running a standard Android factory format.",
+    whyDoIWantIt: "Corrupts the partition maps. The bootloader will fail to mount '/data' and will boot loop back to recovery.",
   ),
   Item(
     id: 81,
@@ -568,6 +728,8 @@ const List<Item> itemsList = [
     description: "Host a website directly from your pocket.",
     guide: "Install Termux. Run `pkg install apache2 mariadb php`. You can run a full LAMP web stack, database, and host local sites on your Wi-Fi network.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Using Termux to run standard web server packages (Apache, MariaDB, PHP) locally on your device.",
+    whyDoIWantIt: "Allows you to host local websites, databases, or development test builds directly on your phone, accessible over Wi-Fi.",
   ),
   Item(
     id: 82,
@@ -575,6 +737,8 @@ const List<Item> itemsList = [
     description: "Run a full desktop environment on your phone screen.",
     guide: "Install Termux and run `pkg install proot-distro`. Download Ubuntu or Debian, install XFCE4, and use a VNC viewer to access a fully functional desktop OS.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Using PRoot to run an unprivileged Linux container (Ubuntu, Debian) inside Termux.",
+    whyDoIWantIt: "Allows you to access a complete desktop OS environment, run desktop programs, and compile code directly on your mobile device.",
   ),
   Item(
     id: 83,
@@ -582,6 +746,8 @@ const List<Item> itemsList = [
     description: "Analyze raw network traffic over USB/Wi-Fi.",
     guide: "Install Termux, run `su -c pkg install tshark tcpdump`. You can capture and analyze raw network packets traversing the network directly from your phone.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Installing network diagnostic libraries (tcpdump, tshark) directly onto the mobile command line.",
+    whyDoIWantIt: "Allows you to capture and analyze raw network traffic traversing your Wi-Fi network for diagnostic or security testing.",
   ),
   Item(
     id: 84,
@@ -589,6 +755,8 @@ const List<Item> itemsList = [
     description: "Remap hardware keys to run complex shell scripts.",
     guide: "Write a custom key layout (`.kl`) file in `/system/usr/keylayout/` to bind your power/volume buttons to any custom Android shell script execution.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Low-level driver key layout maps stored in the kernel configurations.",
+    whyDoIWantIt: "Allows you to change the functionality of physical buttons (like double-tapping volume to launch a script or run an exploit).",
   ),
   Item(
     id: 85,
@@ -596,6 +764,8 @@ const List<Item> itemsList = [
     description: "Turn your phone into a penetration testing station.",
     guide: "Install Kali NetHunter. You can run network scanning, execute Metasploit, deploy wireless audit tools, and perform security testing over USB OTG.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Kali NetHunter is an open-source mobile penetration testing platform for Android devices.",
+    whyDoIWantIt: "Turns your phone into a portable security analysis tool capable of network auditing, USB attacks, and script injection.",
   ),
   Item(
     id: 86,
@@ -603,6 +773,8 @@ const List<Item> itemsList = [
     description: "Run desktop operating systems using emulation.",
     guide: "Install Limbo PC Emulator or QEMU in Termux. You can virtualize x86 architectures to run lightweight Linux distros or Windows XP on your phone.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Using PC emulator packages (QEMU, Limbo) inside the mobile Linux terminal.",
+    whyDoIWantIt: "Allows you to run x86 operating systems (like Windows XP or lightweight desktop Linux) inside virtual sandboxes on your phone.",
   ),
   Item(
     id: 87,
@@ -610,6 +782,8 @@ const List<Item> itemsList = [
     description: "Write low-level tasker scripts.",
     guide: "Create root-level shell scripts that trigger on system events, allowing you to control hardware voltages, turn on/off radios, or backup data automatically.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Using Tasker paired with root permissions to trigger command line actions on device hardware states.",
+    whyDoIWantIt: "Allows you to automate everything: toggle Zygisk, log battery stats, or backup data automatically when conditions are met.",
   ),
   Item(
     id: 88,
@@ -617,6 +791,8 @@ const List<Item> itemsList = [
     description: "Recover access to a locked device.",
     guide: "If you forget your lock PIN, connect the phone to your PC and run: `adb shell su -c rm /data/system/gatekeeper.password` to clear pattern locks.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Removing gatekeeper files from the local storage database using a root shell command.",
+    whyDoIWantIt: "If you forget your lockscreen PIN, this allows you to delete the lock credential database and regain access without wiping data.",
   ),
   Item(
     id: 89,
@@ -624,6 +800,8 @@ const List<Item> itemsList = [
     description: "Set up a global transparent proxy.",
     guide: "Use root tools like ProxyDroid to route all TCP/UDP connections on your G24 through a secure SOCKS5 proxy or Tor network at the system level.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Global routing tools that redirect all system network connections through secure proxy tunnels.",
+    whyDoIWantIt: "Ensures all applications, background systems, and browsers route their traffic securely through proxy tunnels or Tor.",
   ),
   Item(
     id: 90,
@@ -631,6 +809,8 @@ const List<Item> itemsList = [
     description: "Turn your phone into an Ethernet routing device.",
     guide: "Connect a USB-C Ethernet adapter. In Termux, write iptables rules to route traffic from your PC through the phone's mobile connection or vice-versa.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Iptables routing rules that control network traffic interfaces on the Linux kernel level.",
+    whyDoIWantIt: "Allows you to route your PC's network traffic through your phone's cellular connection over a USB-C Ethernet bridge.",
   ),
   Item(
     id: 91,
@@ -638,6 +818,8 @@ const List<Item> itemsList = [
     description: "Unlock custom layouts and tablet configurations.",
     guide: "Run `adb shell wm density [value]` in Termux as root to change screen scale beyond the limits defined in standard developer settings.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Display density parameters that control screen scaling and layout scaling configurations.",
+    whyDoIWantIt: "Allows you to force desktop or tablet layouts in apps by bypassing standard Android display sizing limits.",
   ),
   Item(
     id: 92,
@@ -645,6 +827,8 @@ const List<Item> itemsList = [
     description: "Run background tasks at scheduled intervals.",
     guide: "Use crontab in Termux as root to run shell scripts at scheduled times (e.g. performing data backups or cleanup operations every midnight).",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "The standard Linux cron utility that schedules command execution at specified times.",
+    whyDoIWantIt: "Allows you to automate daily tasks (like backing up your databases or cleaning up cache files) at scheduled intervals.",
   ),
   Item(
     id: 93,
@@ -652,6 +836,8 @@ const List<Item> itemsList = [
     description: "Speed up or slow down charging times.",
     guide: "Modify `/sys/class/power_supply/battery/constant_charge_current_max` in Termux as root to customize the maximum current input to your battery.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Kernel variables that govern how much electrical power is allowed to charge the device battery.",
+    whyDoIWantIt: "Allows you to adjust charging speeds, reducing charging times or slowing down charge rates to minimize heat.",
   ),
   Item(
     id: 94,
@@ -659,6 +845,8 @@ const List<Item> itemsList = [
     description: "Boost microphone or headphone volume directly on the DAC.",
     guide: "Modify `/vendor/etc/mixer_paths.xml` to edit hardware audio gain levels. You can boost output volumes beyond Motorola's software limits.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Low-level hardware mixer configurations that control audio output levels on the phone's DAC.",
+    whyDoIWantIt: "Allows you to boost microphone sensitivities or headphone volume outputs past factory software limits.",
   ),
   Item(
     id: 95,
@@ -666,6 +854,8 @@ const List<Item> itemsList = [
     description: "Hide your device fingerprint from trackers.",
     guide: "Use LSPosed modules like 'Device ID Changer' to spoof your hardware identifiers, IMEI, Android ID, and MAC address on the fly for specific apps.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "LSPosed hook modules that intercept system queries for hardware identification numbers.",
+    whyDoIWantIt: "Prevents trackers and apps from reading your true IMEI, MAC address, or serial number, keeping your device anonymous.",
   ),
   Item(
     id: 96,
@@ -673,6 +863,8 @@ const List<Item> itemsList = [
     description: "Monitor raw hardware touch data.",
     guide: "Run `getevent -lt /dev/input/event1` (or event corresponding to touch) in Termux as root to read coordinates and touch pressure logs directly.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "The device input streams that report raw coordinate coordinates from the touch screen digitizer.",
+    whyDoIWantIt: "Allows you to monitor exact touch input pressure, coordinates, and swipe tracks in real time for diagnostic testing.",
   ),
   Item(
     id: 97,
@@ -680,6 +872,8 @@ const List<Item> itemsList = [
     description: "Control your PC via USB HID emulation.",
     guide: "Use root apps like USB gadget controller to emulate a USB keyboard, mouse, or game controller on your PC through a USB-C cable link.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "A USB driver controller configuration that emulates human interface devices (HID) over USB.",
+    whyDoIWantIt: "Allows your phone to act as a physical USB keyboard or mouse when connected to any computer.",
   ),
   Item(
     id: 98,
@@ -687,6 +881,8 @@ const List<Item> itemsList = [
     description: "Customize CPU thermal throttling thresholds.",
     guide: "Edit `/vendor/etc/thermal-engine.conf` (or corresponding MTK configuration) to raise throttling limits for high-performance gaming sessions.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Configuration maps that determine when the kernel should scale down CPU clock speeds due to heat.",
+    whyDoIWantIt: "Allows you to adjust thermal thresholds, keeping performance high during gaming sessions at the cost of heat.",
   ),
   Item(
     id: 99,
@@ -694,6 +890,8 @@ const List<Item> itemsList = [
     description: "Get exact micro-ampere telemetry.",
     guide: "Run `cat /sys/class/power_supply/battery/uevent` in Termux to read raw temperature, state of charge, micro-voltage, and cycle counts.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Kernel statistical stats tracking detailed current draw and micro-voltage levels of the battery.",
+    whyDoIWantIt: "Provides precise battery metrics, cycles, health, and current draw in micro-amperes.",
   ),
   Item(
     id: 100,
@@ -701,5 +899,7 @@ const List<Item> itemsList = [
     description: "Read desktop filesystems over OTG.",
     guide: "Android doesn't support NTFS/ext4 natively on OTG. With root, run: `mkdir /mnt/ntfs && mount -t ntfs-3g /dev/block/sdb1 /mnt/ntfs` to access files.",
     category: ItemCategory.mindBlowing,
+    whatIsIt: "Using filesystem mount commands to mount and open filesystems not natively supported by Android (NTFS/ext4).",
+    whyDoIWantIt: "Allows you to read and write files on external hard drives or Linux-formatted USB sticks directly via OTG.",
   ),
 ];

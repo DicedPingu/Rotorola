@@ -154,20 +154,90 @@ class ToolsPage extends StatelessWidget {
                     Text(
                       tool.title,
                       style: GoogleFonts.outfit(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: AppTheme.textPrimary,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 8),
 
                     // Description
                     Text(
                       tool.description,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.textSecondary.withOpacity(0.9),
-                        height: 1.5,
+                        color: AppTheme.textSecondary.withOpacity(0.95),
+                        height: 1.4,
                       ),
+                    ),
+                    const SizedBox(height: 14),
+
+                    // WHAT IS IT? Section
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.help_outline_rounded, color: color, size: 16),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'WHAT IS IT?',
+                                style: GoogleFonts.outfit(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: color,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                              const SizedBox(height: 3),
+                              Text(
+                                tool.whatIsIt,
+                                style: GoogleFonts.outfit(
+                                  fontSize: 13,
+                                  color: AppTheme.textPrimary.withOpacity(0.85),
+                                  height: 1.4,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+
+                    // WHY DO I WANT THIS? Section
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.psychology_outlined, color: color, size: 16),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'WHY DO I WANT THIS?',
+                                style: GoogleFonts.outfit(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: color,
+                                  letterSpacing: 0.5,
+                                ),
+                              ),
+                              const SizedBox(height: 3),
+                              Text(
+                                tool.whyDoIWantIt,
+                                style: GoogleFonts.outfit(
+                                  fontSize: 13,
+                                  color: AppTheme.textPrimary.withOpacity(0.85),
+                                  height: 1.4,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16),
 

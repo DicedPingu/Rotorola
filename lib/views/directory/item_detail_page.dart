@@ -102,6 +102,97 @@ class ItemDetailPage extends StatelessWidget {
               const SizedBox(height: 24),
 
               Divider(color: Colors.white.withOpacity(0.1), height: 1),
+              const SizedBox(height: 20),
+
+              // WHAT IS IT? Card
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.02),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.04),
+                    width: 1,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.help_outline_rounded, color: accentColor, size: 18),
+                        const SizedBox(width: 8),
+                        Text(
+                          'WHAT IS IT?',
+                          style: GoogleFonts.outfit(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: accentColor,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      item.whatIsIt,
+                      style: GoogleFonts.outfit(
+                        fontSize: 14,
+                        color: AppTheme.textPrimary.withOpacity(0.9),
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 14),
+
+              // WHY DO I WANT THIS? Card
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: accentColor.withOpacity(0.04),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: accentColor.withOpacity(0.1),
+                    width: 1,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.psychology_outlined, color: accentColor, size: 18),
+                        const SizedBox(width: 8),
+                        Text(
+                          'WHY DO I WANT THIS?',
+                          style: GoogleFonts.outfit(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: accentColor,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      item.whyDoIWantIt,
+                      style: GoogleFonts.outfit(
+                        fontSize: 14,
+                        color: AppTheme.textPrimary.withOpacity(0.95),
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              Divider(color: Colors.white.withOpacity(0.1), height: 1),
               const SizedBox(height: 24),
 
               // Instructions Header

@@ -1,6 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/item.dart';
+import '../../models/item.dart';
 import '../core/constants/items_data.dart';
+
+class NavigationIndex extends Notifier<int> {
+  @override
+  int build() => 0;
+  void setIndex(int index) => state = index;
+}
+
+final navigationIndexProvider = NotifierProvider<NavigationIndex, int>(NavigationIndex.new);
 
 class SearchRepository extends Notifier<String> {
   @override

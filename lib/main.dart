@@ -6,6 +6,7 @@ import 'views/guides/guides_page.dart';
 import 'views/directory/directory_page.dart';
 import 'views/tools/tools_page.dart';
 import 'views/quiz/quiz_list_page.dart';
+import 'providers/search_provider.dart';
 
 void main() {
   runApp(
@@ -30,29 +31,24 @@ class RotorolaApp extends StatelessWidget {
   }
 }
 
-class MainNavigationShell extends StatefulWidget {
+class MainNavigationShell extends ConsumerWidget {
   const MainNavigationShell({super.key});
 
-  @override
-  State<MainNavigationShell> createState() => _MainNavigationShellState();
-}
-
-class _MainNavigationShellState extends State<MainNavigationShell> {
-  int _currentIndex = 0;
-
-  final List<Widget> _pages = [
-    const HomePage(),
-    const DirectoryPage(),
-    const GuidesPage(),
-    const ToolsPage(),
-    const QuizListPage(),
+  static const List<Widget> _pages = [
+    HomePage(),
+    DirectoryPage(),
+    GuidesPage(),
+    ToolsPage(),
+    QuizListPage(),
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentIndex = ref.watch(navigationIndexProvider);
+
     return Scaffold(
       body: IndexedStack(
-        index: _currentIndex,
+        index: currentIndex,
         children: _pages,
       ),
       bottomNavigationBar: Container(
@@ -65,11 +61,9 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
           ),
         ),
         child: BottomNavigationBar(
-          currentIndex: _currentIndex,
+          currentIndex: currentIndex,
           onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
+            ref.read(navigationIndexProvider.notifier).setIndex(index);
           },
           type: BottomNavigationBarType.fixed,
           backgroundColor: AppTheme.surface,

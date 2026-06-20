@@ -12,6 +12,8 @@ class Item {
   final String description;
   final String guide;
   final ItemCategory category;
+  final String whatIsIt;
+  final String whyDoIWantIt;
 
   const Item({
     required this.id,
@@ -19,6 +21,8 @@ class Item {
     required this.description,
     required this.guide,
     required this.category,
+    required this.whatIsIt,
+    required this.whyDoIWantIt,
   });
 
   String get categoryName {

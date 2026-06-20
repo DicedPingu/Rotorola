@@ -4,6 +4,8 @@ class Tool {
   final String category;
   final String linkUrl;
   final String iconName;
+  final String whatIsIt;
+  final String whyDoIWantIt;
 
   const Tool({
     required this.title,
@@ -11,5 +13,7 @@ class Tool {
     required this.category,
     required this.linkUrl,
     required this.iconName,
+    required this.whatIsIt,
+    required this.whyDoIWantIt,
   });
 }

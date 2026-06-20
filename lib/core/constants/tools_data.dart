@@ -7,6 +7,8 @@ const List<Tool> toolsList = [
     category: 'Terminal & CLI',
     linkUrl: 'https://github.com/termux/termux-app/releases',
     iconName: 'terminal',
+    whatIsIt: 'An app that gives you a local Linux command-line shell interface directly on your Android phone, similar to a Terminal window on a desktop computer.',
+    whyDoIWantIt: 'It allows you to run powerful scripts, command line commands, compile software, use secure ssh terminals, and manage device files directly without needing a PC.',
   ),
   Tool(
     title: 'Kali NetHunter',
@@ -14,6 +16,8 @@ const List<Tool> toolsList = [
     category: 'Security Testing',
     linkUrl: 'https://www.kali.org/docs/nethunter/',
     iconName: 'security',
+    whatIsIt: 'A specialized suite of cybersecurity and penetration testing tools compiled to run inside an isolated Linux environment on your phone.',
+    whyDoIWantIt: 'It turns your Motorola G24 into a portable hacking and security auditing station to test wireless networks, scan server ports, and audit hardware security.',
   ),
   Tool(
     title: 'Tool-X',
@@ -21,6 +25,8 @@ const List<Tool> toolsList = [
     category: 'Security Testing',
     linkUrl: 'https://github.com/Rajkumarsidus/Tool-X',
     iconName: 'build',
+    whatIsIt: 'A terminal installer script that simplifies searching and installing hundreds of security analysis packages directly into Termux.',
+    whyDoIWantIt: 'Manually downloading and compiling hacking utilities is tedious. Tool-X lets you install complete categories of tools with a single click.',
   ),
   Tool(
     title: 'AdAway',
@@ -28,6 +34,8 @@ const List<Tool> toolsList = [
     category: 'System Utility',
     linkUrl: 'https://adaway.org/',
     iconName: 'block',
+    whatIsIt: 'An ad blocker that works by altering your phone\'s system host file to point ad servers to a dead-end IP address (localhost).',
+    whyDoIWantIt: 'Unlike browser extensions, it blocks ads everywhere—inside free apps, video players, and games—without using any extra RAM or battery.',
   ),
   Tool(
     title: 'Swift Backup',
@@ -35,6 +43,8 @@ const List<Tool> toolsList = [
     category: 'Backups',
     linkUrl: 'https://play.google.com/store/apps/details?id=parts.swift.backup',
     iconName: 'backup',
+    whatIsIt: 'An advanced backup utility that utilizes root permissions to copy the private internal data directories of your applications.',
+    whyDoIWantIt: 'Standard Android backups only save app list files. Swift Backup copies the actual data, meaning you can restore apps and be automatically logged in and configured.',
   ),
   Tool(
     title: 'SmartPack Kernel Manager',
@@ -42,6 +52,8 @@ const List<Tool> toolsList = [
     category: 'Performance',
     linkUrl: 'https://github.com/SmartPack/SmartPack-Kernel-Manager/releases',
     iconName: 'settings_suggest',
+    whatIsIt: 'A manager app that lets you view and alter variables on the running Linux kernel of your phone.',
+    whyDoIWantIt: 'You can adjust CPU frequencies to save battery, set charging limits to protect battery health, and tweak low-memory behavior to prevent app lag.',
   ),
   Tool(
     title: 'LSPosed (Zygisk)',
@@ -49,6 +61,8 @@ const List<Tool> toolsList = [
     category: 'System Framework',
     linkUrl: 'https://github.com/LSPosed/LSPosed/releases',
     iconName: 'extension',
+    whatIsIt: 'A framework overlay that lets you inject code blocks directly into operating system classes and app runtimes dynamically.',
+    whyDoIWantIt: 'Allows you to customize status bars, force apps to permit screenshots, modify hardware signatures to bypass tracking, and add hardware key actions.',
   ),
   Tool(
     title: 'Neo Store',
@@ -56,6 +70,8 @@ const List<Tool> toolsList = [
     category: 'App Store',
     linkUrl: 'https://github.com/NeoApplications/Neo-Store/releases',
     iconName: 'shop',
+    whatIsIt: 'An alternative app store that hosts only free and open-source software (F-Droid repository).',
+    whyDoIWantIt: 'Allows you to download privacy-respecting, root-friendly, and open-source applications without telemetry tracking or needing a Google Account.',
   ),
   Tool(
     title: 'Canta',
@@ -63,6 +79,8 @@ const List<Tool> toolsList = [
     category: 'System Utility',
     linkUrl: 'https://github.com/samolego/Canta/releases',
     iconName: 'delete_forever',
+    whatIsIt: 'An uninstaller utility that bypasses standard Android user limits to delete pre-installed system apps (bloatware).',
+    whyDoIWantIt: 'Allows you to safely uninstall default Facebook services, manufacturer bloatware, and Google tracking services, freeing up memory and CPU.',
   ),
   Tool(
     title: 'MTKClient',
@@ -70,5 +88,7 @@ const List<Tool> toolsList = [
     category: 'PC Tool',
     linkUrl: 'https://github.com/bkerler/mtkclient',
     iconName: 'computer',
+    whatIsIt: 'A specialized computer program that interfaces directly with MediaTek microcontrollers before the bootloader even runs.',
+    whyDoIWantIt: 'If your device boot loops or gets "soft-bricked" and refuses to turn on, MTKClient on your PC lets you read/write device memory partitions to repair the system.',
   ),
 ];
