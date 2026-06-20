@@ -5,6 +5,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/constants/items_data.dart';
 import '../../models/item.dart';
 import '../guides/guide_viewer.dart';
+import 'settings_page.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -59,20 +60,30 @@ class HomePage extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: AppTheme.cyanAccent.withOpacity(0.1),
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: AppTheme.cyanAccent.withOpacity(0.3),
-                          width: 1.5,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SettingsPage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: AppTheme.cyanAccent.withOpacity(0.1),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppTheme.cyanAccent.withOpacity(0.3),
+                            width: 1.5,
+                          ),
                         ),
-                      ),
-                      child: const Icon(
-                        Icons.terminal,
-                        color: AppTheme.cyanAccent,
-                        size: 24,
+                        child: const Icon(
+                          Icons.settings,
+                          color: AppTheme.cyanAccent,
+                          size: 24,
+                        ),
                       ),
                     ),
                   ],
