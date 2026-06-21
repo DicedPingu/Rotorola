@@ -41,6 +41,14 @@ class GuidesPage extends StatelessWidget {
         'icon': Icons.tune,
         'color': Colors.purpleAccent,
       },
+      {
+        'title': 'Repositories & Modules',
+        'subtitle': 'F-Droid & Magisk Repo Setup',
+        'description': 'Configure third-party F-Droid sources (IzzyOnDroid) and navigate modern Magisk module stores (MMRL, Magisk-Modules-Alt-Repo).',
+        'assetPath': 'assets/guides/05_repositories.md',
+        'icon': Icons.source_outlined,
+        'color': Colors.tealAccent,
+      },
     ];
 
     return Scaffold(
