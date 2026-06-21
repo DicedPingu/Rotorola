@@ -1,34 +1,51 @@
-# rooted G24 - Quick Abilities Cheatsheet
+# Custom Bootloader (Kaeru) Setup & Abilities
 
-Now that your Motorola G24 is unlocked and rooted, here is a quick guide on what you can do and how to get started:
+Your Motorola G24 (codename `fogorow`) uses a custom bootloader module (often based on `kaeru` or `chouchou`) to bypass standard restriction checks. This guide explains what the custom bootloader is, why it is essential, and how it is configured.
 
 ---
 
-## 1. System-Wide Ad Blocking (AdAway)
-* **What it does**: Blocks advertisements globally inside all apps, websites, and games by editing your device hosts file.
-* **How to do it**:
-  1. Download and install **AdAway** (from F-Droid or F-Droid's website).
-  2. Open AdAway and select **Root Server** mode.
-  3. Allow root access in the Magisk popup.
-  4. Tap **Enable** to sync the hosts files.
+## 1. What is the Custom Bootloader?
+On the Motorola G24, the stock bootloader (`lk.img` / Little Kernel) performs strict signature verification of your system, product, vendor, and boot partitions. 
 
-## 2. Advanced Customization (LSPosed & Magisk Modules)
-* **What it does**: Allows you to hook into Android APIs to modify UI elements, change animations, remap hardware buttons, and customize behavior.
-* **How to do it**:
-  1. Open Magisk, go to Settings, and enable **Zygisk** (requires a reboot).
-  2. Download the **LSPosed (Zygisk)** zip file from GitHub.
-  3. In Magisk, go to the **Modules** tab, tap **Install from storage**, select the LSPosed zip, and reboot.
-  4. Open the LSPosed app to install modules (like *GravityBox* or *Physical Button Remapper*).
+The custom bootloader is a modified `lk` binary compiled to:
+* **Disable Android Verified Boot (AVB 2.0)**: Bypasses cryptographic verification of partition integrity.
+* **Enable Custom Partition Signature Loading**: Allows the processor to load modified partition files (such as a rooted `boot.img` or custom ROMs).
+* **Provide Brick Protection**: Blocks standard `fastboot flashing lock` commands to prevent you from locking the bootloader with unverified partitions (which causes an irreversible hard-brick).
 
-## 3. High-Quality Custom Backups (Swift Backup)
-* **What it does**: Backs up not just the APK, but all local app data, settings, accounts, and progress.
-* **How to do it**:
-  1. Install **Swift Backup** from the Google Play Store.
-  2. Grant it Root access.
-  3. Link your Google Drive or Nextcloud to store backups in the cloud safely.
+---
 
-## 4. Debloating System Apps
-* **What it does**: Permanently removes unused pre-installed bloatware or Moto services to free up RAM.
-* **How to do it**:
-  1. Install **Canta** (via F-Droid) alongside **Shizuku**, or use a root uninstaller like **AppControl**.
-  2. Safely uninstall carrier apps and tracking services.
+## 2. Why Do I Need It?
+Without this custom bootloader, any attempt to run a rooted kernel, modify system directories, or flash custom files will trigger the processor's secure boot key check, causing:
+1. An immediate bootloop.
+2. A red "Red State" verification warning screen.
+3. A locked secure boot system that refuses to boot unless completely factory reflashed.
+
+The custom bootloader is the foundation that enables Zygisk, LSPosed, Magisk modules, custom recovery images, and Generic System Image (GSI) custom ROMs to run on your G24.
+
+---
+
+## 3. Initial Setup & Installation
+If you are performing a clean install, the custom bootloader is flashed via Fastboot:
+
+1. **Unlock the OEM Bootloader**:
+   * Enable *Developer Options* by tapping *Build Number* 7 times in Settings.
+   * Toggle **OEM Unlocking** and **USB Debugging** to ON.
+   * Reboot to Fastboot: `adb reboot bootloader`.
+   * Run the unlock command: `fastboot flashing unlock` (this wipes all user data).
+
+2. **Flash the Custom Bootloader Partition**:
+   * Flash the custom `lk` binary to both bootloader slots:
+     ```bash
+     fastboot flash bootloader lk.img
+     fastboot flash lk lk.img
+     ```
+   * *Note: Flash to both slots to ensure boot stability during OTA updates or slot switches.*
+
+---
+
+## 4. Unlocked Abilities & Features
+Once the custom bootloader is active, your Motorola G24 gains these capabilities:
+
+* **Direct Fastbootd Access**: Type `fastboot reboot fastboot` to enter user-space fastbootd mode, allowing you to resize and flash the G24's dynamic partitions (like `system` or `product`).
+* **Root Injection**: You can patch your G24's boot image via Magisk or APatch and flash it directly (`fastboot flash boot patched_boot.img`) without boot errors.
+* **GSI ROM Compatibility**: Allows you to flash dynamic ROMs (like Pixel Experience or LineageOS) directly over the stock Motorola system partition.
