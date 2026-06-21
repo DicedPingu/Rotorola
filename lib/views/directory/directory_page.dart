@@ -61,7 +61,7 @@ class _DirectoryPageState extends ConsumerState<DirectoryPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('The 100 Items'),
+        title: const Text('Optimization Index'),
         backgroundColor: AppTheme.background,
         elevation: 0,
       ),

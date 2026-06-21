@@ -170,7 +170,7 @@ class MainNavigationShell extends ConsumerWidget {
               BottomNavigationBarItem(
                 icon: Icon(Icons.list_alt_outlined),
                 activeIcon: Icon(Icons.list_alt),
-                label: '100 Items',
+                label: 'Handbook',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.menu_book_outlined),
